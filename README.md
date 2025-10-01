@@ -6,7 +6,7 @@ A modern Laravel 12 application featuring a modular architecture with Catalog an
 
 ### Core Stack
 - **Laravel 12** - Latest PHP framework
-- **PHP 8.4** - Modern PHP with enhanced performance
+- **PHP 8.3+** - Modern PHP (requires 8.3 or higher)
 - **PostgreSQL 16** - Robust relational database
 - **Livewire 3** - Reactive frontend components
 - **Filament 4** - Powerful admin panel
@@ -39,7 +39,7 @@ A modern Laravel 12 application featuring a modular architecture with Catalog an
 ### Code Quality Tools
 - **Duster**: Multi-tool linting (TLint, PHP_CodeSniffer, PHP CS Fixer, Pint)
 - **Larastan**: PHPStan static analysis (Level 5)
-- **GitHub Actions**: Automated CI/CD with matrix testing (PHP 8.2, 8.3, 8.4)
+- **GitHub Actions**: Automated CI/CD with matrix testing (PHP 8.3, 8.4)
 
 ## 📋 Prerequisites
 

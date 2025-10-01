@@ -3,6 +3,9 @@
 namespace Modules\Order\Filament\Resources;
 
 use BackedEnum;
+use Filament\Actions;
+use Filament\Forms;
+use Filament\Infolists;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components;
 use Filament\Schemas\Schema;
@@ -28,14 +31,14 @@ class OrderResource extends Resource
             ->components([
                 Components\Section::make('Customer Information')
                     ->schema([
-                        Components\TextInput::make('customer_name')
+                        Forms\Components\TextInput::make('customer_name')
                             ->required()
                             ->maxLength(255),
-                        Components\TextInput::make('customer_email')
+                        Forms\Components\TextInput::make('customer_email')
                             ->email()
                             ->required()
                             ->maxLength(255),
-                        Components\TextInput::make('customer_phone')
+                        Forms\Components\TextInput::make('customer_phone')
                             ->tel()
                             ->required()
                             ->maxLength(255),
@@ -44,11 +47,11 @@ class OrderResource extends Resource
 
                 Components\Section::make('Order Details')
                     ->schema([
-                        Components\Select::make('status')
+                        Forms\Components\Select::make('status')
                             ->options(Order::getStatuses())
                             ->required()
                             ->default(Order::STATUS_PENDING),
-                        Components\TextInput::make('total')
+                        Forms\Components\TextInput::make('total')
                             ->numeric()
                             ->prefix('$')
                             ->disabled()
@@ -103,9 +106,9 @@ class OrderResource extends Resource
                     ->multiple(),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\Action::make('confirm')
+                Actions\ViewAction::make(),
+                Actions\EditAction::make(),
+                Actions\Action::make('confirm')
                     ->icon('heroicon-o-check-circle')
                     ->color('success')
                     ->visible(fn (Order $record): bool => $record->status === Order::STATUS_PENDING)
@@ -115,7 +118,7 @@ class OrderResource extends Resource
                         ->success()
                         ->title('Order confirmed')
                         ->send()),
-                Tables\Actions\Action::make('ship')
+                Actions\Action::make('ship')
                     ->icon('heroicon-o-truck')
                     ->color('primary')
                     ->visible(fn (Order $record): bool => $record->status === Order::STATUS_CONFIRMED)
@@ -125,7 +128,7 @@ class OrderResource extends Resource
                         ->success()
                         ->title('Order marked as shipped')
                         ->send()),
-                Tables\Actions\Action::make('deliver')
+                Actions\Action::make('deliver')
                     ->icon('heroicon-o-home')
                     ->color('success')
                     ->visible(fn (Order $record): bool => $record->status === Order::STATUS_SHIPPED)
@@ -137,8 +140,8 @@ class OrderResource extends Resource
                         ->send()),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                Actions\BulkActionGroup::make([
+                    Actions\DeleteBulkAction::make(),
                 ]),
             ])
             ->defaultSort('created_at', 'desc');
@@ -150,15 +153,15 @@ class OrderResource extends Resource
             ->components([
                 Components\Section::make('Customer Information')
                     ->schema([
-                        Components\TextEntry::make('customer_name'),
-                        Components\TextEntry::make('customer_email'),
-                        Components\TextEntry::make('customer_phone'),
+                        Infolists\Components\TextEntry::make('customer_name'),
+                        Infolists\Components\TextEntry::make('customer_email'),
+                        Infolists\Components\TextEntry::make('customer_phone'),
                     ])
                     ->columns(3),
 
                 Components\Section::make('Order Information')
                     ->schema([
-                        Components\TextEntry::make('status')
+                        Infolists\Components\TextEntry::make('status')
                             ->badge()
                             ->color(fn (string $state): string => match ($state) {
                                 Order::STATUS_PENDING => 'warning',
@@ -167,24 +170,24 @@ class OrderResource extends Resource
                                 Order::STATUS_DELIVERED => 'success',
                                 default => 'gray',
                             }),
-                        Components\TextEntry::make('total')
+                        Infolists\Components\TextEntry::make('total')
                             ->money('USD'),
-                        Components\TextEntry::make('created_at')
+                        Infolists\Components\TextEntry::make('created_at')
                             ->dateTime(),
                     ])
                     ->columns(3),
 
                 Components\Section::make('Order Items')
                     ->schema([
-                        Components\RepeatableEntry::make('orderItems')
+                        Infolists\Components\RepeatableEntry::make('orderItems')
                             ->schema([
-                                Components\TextEntry::make('product_name')
+                                Infolists\Components\TextEntry::make('product_name')
                                     ->label('Product'),
-                                Components\TextEntry::make('product_price')
+                                Infolists\Components\TextEntry::make('product_price')
                                     ->label('Price')
                                     ->money('USD'),
-                                Components\TextEntry::make('quantity'),
-                                Components\TextEntry::make('subtotal')
+                                Infolists\Components\TextEntry::make('quantity'),
+                                Infolists\Components\TextEntry::make('subtotal')
                                     ->money('USD'),
                             ])
                             ->columns(4),

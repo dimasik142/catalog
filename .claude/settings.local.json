@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(docker-compose:*)"
+      "Bash(docker-compose:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nInitial commit: Laravel Modular E-Commerce Platform\n\nFeatures:\n- Laravel 12 with PHP 8.4\n- PostgreSQL 16 database\n- Docker containerization (PHP 8.4-FPM, PostgreSQL, Nginx)\n- Filament 4 admin panel\n- Livewire 3 components\n- Pest 3 testing framework\n\nModules:\n- Catalog: Product and Category management with public browsing\n- Order: Order management with status workflow (pending → confirmed → shipped → delivered)\n\nCode Quality:\n- Duster (TLint, PHP_CodeSniffer, PHP CS Fixer, Pint)\n- Larastan (PHPStan Level 5 with baseline)\n- GitHub Actions CI/CD (matrix testing PHP 8.2, 8.3, 8.4)\n\nDocumentation:\n- Comprehensive README.md with installation and usage\n- CODE_QUALITY.md with tool documentation\n- DOCKER-SETUP.md with Docker instructions\n- Makefile with convenient commands\n\nArchitecture:\n- Modular design with nwidart/laravel-modules\n- Independent modules (Order doesn''t depend on Catalog)\n- Product snapshots in orders\n- Filament resources for admin\n- Livewire components for public interfaces\nEOF\n)\")"
     ],
     "deny": [],
     "ask": []

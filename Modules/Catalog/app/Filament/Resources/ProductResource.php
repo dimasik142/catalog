@@ -3,6 +3,8 @@
 namespace Modules\Catalog\Filament\Resources;
 
 use BackedEnum;
+use Filament\Actions;
+use Filament\Forms;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components;
 use Filament\Schemas\Schema;
@@ -29,38 +31,38 @@ class ProductResource extends Resource
             ->components([
                 Components\Section::make()
                     ->schema([
-                        Components\Select::make('category_id')
+                        Forms\Components\Select::make('category_id')
                             ->label('Category')
                             ->relationship('category', 'name')
                             ->required()
                             ->searchable()
                             ->preload()
                             ->createOptionForm([
-                                Components\TextInput::make('name')
+                                Forms\Components\TextInput::make('name')
                                     ->required()
                                     ->maxLength(255),
-                                Components\TextInput::make('slug')
+                                Forms\Components\TextInput::make('slug')
                                     ->required()
                                     ->maxLength(255)
                                     ->unique(Category::class, 'slug'),
-                                Components\Textarea::make('description')
+                                Forms\Components\Textarea::make('description')
                                     ->rows(3),
                             ]),
-                        Components\TextInput::make('name')
+                        Forms\Components\TextInput::make('name')
                             ->required()
                             ->maxLength(255),
-                        Components\TextInput::make('price')
+                        Forms\Components\TextInput::make('price')
                             ->required()
                             ->numeric()
                             ->prefix('$')
                             ->minValue(0)
                             ->step(0.01),
-                        Components\TextInput::make('stock')
+                        Forms\Components\TextInput::make('stock')
                             ->required()
                             ->numeric()
                             ->minValue(0)
                             ->default(0),
-                        Components\Textarea::make('description')
+                        Forms\Components\Textarea::make('description')
                             ->rows(4)
                             ->columnSpanFull(),
                     ])
@@ -105,12 +107,12 @@ class ProductResource extends Resource
                     ->preload(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Actions\EditAction::make(),
+                Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                Actions\BulkActionGroup::make([
+                    Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }
