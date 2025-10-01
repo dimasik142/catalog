@@ -12,6 +12,7 @@ class ProductCatalog extends Component
     use WithPagination;
 
     public $selectedCategoryId = null;
+
     public $search = '';
 
     protected $queryString = [
@@ -51,8 +52,8 @@ class ProductCatalog extends Component
             })
             ->when($this->search, function ($query) {
                 $query->where(function ($q) {
-                    $q->where('name', 'like', '%' . $this->search . '%')
-                        ->orWhere('description', 'like', '%' . $this->search . '%');
+                    $q->where('name', 'like', '%'.$this->search.'%')
+                        ->orWhere('description', 'like', '%'.$this->search.'%');
                 });
             })
             ->orderBy('created_at', 'desc');

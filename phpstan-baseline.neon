@@ -1,94 +1,16 @@
 parameters:
 	ignoreErrors:
 		-
-			message: '#^Call to static method make\(\) on an unknown class Filament\\Schemas\\Components\\TextInput\.$#'
-			identifier: class.notFound
-			count: 2
-			path: Modules/Catalog/app/Filament/Resources/CategoryResource.php
-
-		-
-			message: '#^Call to static method make\(\) on an unknown class Filament\\Schemas\\Components\\Textarea\.$#'
+			message: '#^Invoking callable on an unknown class Filament\\Forms\\Set\.$#'
 			identifier: class.notFound
 			count: 1
 			path: Modules/Catalog/app/Filament/Resources/CategoryResource.php
 
 		-
-			message: '#^Call to static method make\(\) on an unknown class Filament\\Tables\\Actions\\BulkActionGroup\.$#'
+			message: '#^Parameter \$set of anonymous function has invalid type Filament\\Forms\\Set\.$#'
 			identifier: class.notFound
 			count: 1
 			path: Modules/Catalog/app/Filament/Resources/CategoryResource.php
-
-		-
-			message: '#^Call to static method make\(\) on an unknown class Filament\\Tables\\Actions\\DeleteAction\.$#'
-			identifier: class.notFound
-			count: 1
-			path: Modules/Catalog/app/Filament/Resources/CategoryResource.php
-
-		-
-			message: '#^Call to static method make\(\) on an unknown class Filament\\Tables\\Actions\\DeleteBulkAction\.$#'
-			identifier: class.notFound
-			count: 1
-			path: Modules/Catalog/app/Filament/Resources/CategoryResource.php
-
-		-
-			message: '#^Call to static method make\(\) on an unknown class Filament\\Tables\\Actions\\EditAction\.$#'
-			identifier: class.notFound
-			count: 1
-			path: Modules/Catalog/app/Filament/Resources/CategoryResource.php
-
-		-
-			message: '#^Invoking callable on an unknown class Filament\\Schemas\\Components\\Set\.$#'
-			identifier: class.notFound
-			count: 1
-			path: Modules/Catalog/app/Filament/Resources/CategoryResource.php
-
-		-
-			message: '#^Parameter \$set of anonymous function has invalid type Filament\\Schemas\\Components\\Set\.$#'
-			identifier: class.notFound
-			count: 1
-			path: Modules/Catalog/app/Filament/Resources/CategoryResource.php
-
-		-
-			message: '#^Call to static method make\(\) on an unknown class Filament\\Schemas\\Components\\Select\.$#'
-			identifier: class.notFound
-			count: 1
-			path: Modules/Catalog/app/Filament/Resources/ProductResource.php
-
-		-
-			message: '#^Call to static method make\(\) on an unknown class Filament\\Schemas\\Components\\TextInput\.$#'
-			identifier: class.notFound
-			count: 5
-			path: Modules/Catalog/app/Filament/Resources/ProductResource.php
-
-		-
-			message: '#^Call to static method make\(\) on an unknown class Filament\\Schemas\\Components\\Textarea\.$#'
-			identifier: class.notFound
-			count: 2
-			path: Modules/Catalog/app/Filament/Resources/ProductResource.php
-
-		-
-			message: '#^Call to static method make\(\) on an unknown class Filament\\Tables\\Actions\\BulkActionGroup\.$#'
-			identifier: class.notFound
-			count: 1
-			path: Modules/Catalog/app/Filament/Resources/ProductResource.php
-
-		-
-			message: '#^Call to static method make\(\) on an unknown class Filament\\Tables\\Actions\\DeleteAction\.$#'
-			identifier: class.notFound
-			count: 1
-			path: Modules/Catalog/app/Filament/Resources/ProductResource.php
-
-		-
-			message: '#^Call to static method make\(\) on an unknown class Filament\\Tables\\Actions\\DeleteBulkAction\.$#'
-			identifier: class.notFound
-			count: 1
-			path: Modules/Catalog/app/Filament/Resources/ProductResource.php
-
-		-
-			message: '#^Call to static method make\(\) on an unknown class Filament\\Tables\\Actions\\EditAction\.$#'
-			identifier: class.notFound
-			count: 1
-			path: Modules/Catalog/app/Filament/Resources/ProductResource.php
 
 		-
 			message: '#^Parameter \#1 \$view of function view expects view\-string\|null, string given\.$#'
@@ -100,60 +22,6 @@ parameters:
 			message: '#^Access to an undefined property Modules\\Order\\Models\\Order\:\:\$status\.$#'
 			identifier: property.notFound
 			count: 3
-			path: Modules/Order/app/Filament/Resources/OrderResource.php
-
-		-
-			message: '#^Call to static method make\(\) on an unknown class Filament\\Schemas\\Components\\RepeatableEntry\.$#'
-			identifier: class.notFound
-			count: 1
-			path: Modules/Order/app/Filament/Resources/OrderResource.php
-
-		-
-			message: '#^Call to static method make\(\) on an unknown class Filament\\Schemas\\Components\\Select\.$#'
-			identifier: class.notFound
-			count: 1
-			path: Modules/Order/app/Filament/Resources/OrderResource.php
-
-		-
-			message: '#^Call to static method make\(\) on an unknown class Filament\\Schemas\\Components\\TextEntry\.$#'
-			identifier: class.notFound
-			count: 10
-			path: Modules/Order/app/Filament/Resources/OrderResource.php
-
-		-
-			message: '#^Call to static method make\(\) on an unknown class Filament\\Schemas\\Components\\TextInput\.$#'
-			identifier: class.notFound
-			count: 4
-			path: Modules/Order/app/Filament/Resources/OrderResource.php
-
-		-
-			message: '#^Call to static method make\(\) on an unknown class Filament\\Tables\\Actions\\Action\.$#'
-			identifier: class.notFound
-			count: 3
-			path: Modules/Order/app/Filament/Resources/OrderResource.php
-
-		-
-			message: '#^Call to static method make\(\) on an unknown class Filament\\Tables\\Actions\\BulkActionGroup\.$#'
-			identifier: class.notFound
-			count: 1
-			path: Modules/Order/app/Filament/Resources/OrderResource.php
-
-		-
-			message: '#^Call to static method make\(\) on an unknown class Filament\\Tables\\Actions\\DeleteBulkAction\.$#'
-			identifier: class.notFound
-			count: 1
-			path: Modules/Order/app/Filament/Resources/OrderResource.php
-
-		-
-			message: '#^Call to static method make\(\) on an unknown class Filament\\Tables\\Actions\\EditAction\.$#'
-			identifier: class.notFound
-			count: 1
-			path: Modules/Order/app/Filament/Resources/OrderResource.php
-
-		-
-			message: '#^Call to static method make\(\) on an unknown class Filament\\Tables\\Actions\\ViewAction\.$#'
-			identifier: class.notFound
-			count: 1
 			path: Modules/Order/app/Filament/Resources/OrderResource.php
 
 		-

@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 use Modules\Catalog\Models\Category;
 
 class CategorySeeder extends Seeder
