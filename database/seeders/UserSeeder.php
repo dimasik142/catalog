@@ -74,6 +74,6 @@ class UserSeeder extends Seeder
             ]);
         }
 
-        $this->command->info('Created '.User::count().' users. Admin credentials: admin@example.com / password');
+        $this->command->info('Created ' . User::count() . ' users. Admin credentials: admin@example.com / password');
     }
 }

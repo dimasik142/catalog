@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Modules\Order\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Modules\Catalog\Models\Product;
@@ -310,6 +310,6 @@ class OrderSeeder extends Seeder
             }
         }
 
-        $this->command->info('Created '.Order::count().' orders with '.OrderItem::count().' order items.');
+        $this->command->info('Created ' . Order::count() . ' orders with ' . OrderItem::count() . ' order items.');
     }
 }

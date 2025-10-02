@@ -23,6 +23,11 @@
                         </a>
                     </div>
                 </div>
+                <div class="flex items-center">
+                    <a href="/order/create" class="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium">
+                        Create Order
+                    </a>
+                </div>
             </div>
         </div>
     </nav>

@@ -44,8 +44,8 @@ class CreateOrder extends Component
         // Search for products without importing the Catalog module
         $this->searchResults = DB::table('products')
             ->join('categories', 'products.category_id', '=', 'categories.id')
-            ->where('products.name', 'like', '%'.$this->search.'%')
-            ->orWhere('products.description', 'like', '%'.$this->search.'%')
+            ->where('products.name', 'like', '%' . $this->search . '%')
+            ->orWhere('products.description', 'like', '%' . $this->search . '%')
             ->select('products.*', 'categories.name as category_name')
             ->limit(10)
             ->get();
@@ -155,7 +155,7 @@ class CreateOrder extends Component
             DB::commit();
 
             $this->clearCart();
-            session()->flash('success', 'Order placed successfully! Order #'.$order->id);
+            session()->flash('success', 'Order placed successfully! Order #' . $order->id);
 
             return redirect()->route('order.view', ['id' => $order->id]);
         } catch (Exception $e) {
@@ -166,6 +166,8 @@ class CreateOrder extends Component
 
     public function render()
     {
+        $this->searchProducts();
+
         return view('order::livewire.create-order');
     }
 }

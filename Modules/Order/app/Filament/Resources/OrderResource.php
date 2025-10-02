@@ -105,7 +105,7 @@ class OrderResource extends Resource
                     ->options(Order::getStatuses())
                     ->multiple(),
             ])
-            ->actions([
+            ->recordActions([
                 Actions\ViewAction::make(),
                 Actions\EditAction::make(),
                 Actions\Action::make('confirm')
@@ -139,7 +139,7 @@ class OrderResource extends Resource
                         ->title('Order marked as delivered')
                         ->send()),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 Actions\BulkActionGroup::make([
                     Actions\DeleteBulkAction::make(),
                 ]),

@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Modules\Catalog\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Modules\Catalog\Models\Category;
@@ -141,6 +141,6 @@ class ProductSeeder extends Seeder
             }
         }
 
-        $this->command->info('Created '.Product::count().' products across '.$categories->count().' categories.');
+        $this->command->info('Created ' . Product::count() . ' products across ' . $categories->count() . ' categories.');
     }
 }
