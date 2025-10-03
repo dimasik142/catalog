@@ -61,7 +61,7 @@ docker-compose exec app vendor/bin/pest
 The project includes a GitHub Actions workflow (`.github/workflows/ci.yml`) that runs on every push and pull request.
 
 **Matrix Testing**:
-- PHP versions: 8.2, 8.3, 8.4
+- PHP version: 8.4
 - Database: PostgreSQL 16
 
 **Workflow Steps**:
