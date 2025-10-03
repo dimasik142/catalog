@@ -2,14 +2,17 @@
 
 namespace Modules\Order\Livewire;
 
+use App\Contracts\Manager\OrderManagerInterface;
+use App\Contracts\Repository\ProductRepositoryInterface;
 use Exception;
-use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-use Modules\Order\Models\Order;
-use Modules\Order\Models\OrderItem;
 
 class CreateOrder extends Component
 {
+    protected ProductRepositoryInterface $productRepository;
+
+    protected OrderManagerInterface $orderManager;
+
     public $customer_name = '';
 
     public $customer_email = '';
@@ -28,9 +31,15 @@ class CreateOrder extends Component
         'customer_phone' => 'required|string|max:255',
     ];
 
+    public function boot(ProductRepositoryInterface $productRepository, OrderManagerInterface $orderManager): void
+    {
+        $this->productRepository = $productRepository;
+        $this->orderManager = $orderManager;
+    }
+
     public function mount()
     {
-        $this->cart = session()->get('order_cart', []);
+        $this->cart = session()->get('cart', []);
     }
 
     public function searchProducts()
@@ -41,25 +50,18 @@ class CreateOrder extends Component
             return;
         }
 
-        // Search for products without importing the Catalog module
-        $this->searchResults = DB::table('products')
-            ->join('categories', 'products.category_id', '=', 'categories.id')
-            ->where('products.name', 'like', '%' . $this->search . '%')
-            ->orWhere('products.description', 'like', '%' . $this->search . '%')
-            ->select('products.*', 'categories.name as category_name')
-            ->limit(10)
-            ->get();
+        // Use ProductService interface to search products (decoupled from Catalog module)
+        $this->searchResults = $this->productRepository->search($this->search, 10);
     }
 
     public function addToCart($productId)
     {
-        $product = DB::table('products')
-            ->join('categories', 'products.category_id', '=', 'categories.id')
-            ->where('products.id', $productId)
-            ->select('products.*', 'categories.name as category_name')
-            ->first();
+        // Use ProductService interface to get product data (decoupled from Catalog module)
+        $product = $this->productRepository->find($productId);
 
-        if (! $product) {
+        if (! $product || $product['stock'] <= 0) {
+            session()->flash('error', 'Product not available');
+
             return;
         }
 
@@ -72,19 +74,24 @@ class CreateOrder extends Component
         }
 
         if ($existingIndex !== null) {
+            if ($this->cart[$existingIndex]['quantity'] >= $product['stock']) {
+                session()->flash('error', 'Cannot add more items than available in stock');
+
+                return;
+            }
             $this->cart[$existingIndex]['quantity']++;
-            $this->cart[$existingIndex]['subtotal'] = $this->cart[$existingIndex]['quantity'] * $this->cart[$existingIndex]['product_price'];
         } else {
             $this->cart[] = [
-                'product_id' => $product->id,
-                'product_name' => $product->name,
-                'product_price' => $product->price,
+                'product_id' => $product['id'],
+                'name' => $product['name'],
+                'price' => $product['price'],
                 'quantity' => 1,
-                'subtotal' => $product->price,
+                'stock' => $product['stock'],
             ];
         }
 
-        session()->put('order_cart', $this->cart);
+        session()->put('cart', $this->cart);
+        session()->flash('success', 'Product added to cart');
         $this->search = '';
         $this->searchResults = [];
     }
@@ -96,28 +103,31 @@ class CreateOrder extends Component
             $this->cart = array_values($this->cart);
         } else {
             $this->cart[$index]['quantity'] = $quantity;
-            $this->cart[$index]['subtotal'] = $this->cart[$index]['quantity'] * $this->cart[$index]['product_price'];
         }
 
-        session()->put('order_cart', $this->cart);
+        session()->put('cart', $this->cart);
     }
 
     public function removeFromCart($index)
     {
         unset($this->cart[$index]);
         $this->cart = array_values($this->cart);
-        session()->put('order_cart', $this->cart);
+        session()->put('cart', $this->cart);
     }
 
     public function clearCart()
     {
         $this->cart = [];
-        session()->forget('order_cart');
+        session()->forget('cart');
     }
 
     public function getTotal()
     {
-        return array_sum(array_column($this->cart, 'subtotal'));
+        return array_sum(array_map(function ($item) {
+            $price = $item['price'] ?? $item['product_price'] ?? 0;
+
+            return $price * $item['quantity'];
+        }, $this->cart));
     }
 
     public function submitOrder()
@@ -130,36 +140,20 @@ class CreateOrder extends Component
             return;
         }
 
-        DB::beginTransaction();
-
         try {
-            $order = Order::create([
+            $customerData = [
                 'customer_name' => $this->customer_name,
                 'customer_email' => $this->customer_email,
                 'customer_phone' => $this->customer_phone,
-                'total' => $this->getTotal(),
-                'status' => Order::STATUS_PENDING,
-            ]);
+            ];
 
-            foreach ($this->cart as $item) {
-                OrderItem::create([
-                    'order_id' => $order->id,
-                    'product_id' => $item['product_id'],
-                    'product_name' => $item['product_name'],
-                    'product_price' => $item['product_price'],
-                    'quantity' => $item['quantity'],
-                    'subtotal' => $item['subtotal'],
-                ]);
-            }
-
-            DB::commit();
+            $order = $this->orderManager->createOrder($customerData, $this->cart);
 
             $this->clearCart();
-            session()->flash('success', 'Order placed successfully! Order #' . $order->id);
+            session()->flash('success', 'Order placed successfully! Order #'.$order->id);
 
             return redirect()->route('order.view', ['id' => $order->id]);
         } catch (Exception $e) {
-            DB::rollBack();
             session()->flash('error', 'Failed to create order. Please try again.');
         }
     }

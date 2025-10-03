@@ -2,14 +2,19 @@
 
 namespace Modules\Catalog\Livewire;
 
+use App\Contracts\Repository\CategoryRepositoryInterface;
+use App\Contracts\Repository\ProductRepositoryInterface;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Modules\Catalog\Models\Category;
-use Modules\Catalog\Models\Product;
 
 class ProductCatalog extends Component
 {
     use WithPagination;
+
+    protected CategoryRepositoryInterface $categoryRepository;
+
+    protected ProductRepositoryInterface $productRepository;
 
     public $selectedCategoryId = null;
 
@@ -20,45 +25,90 @@ class ProductCatalog extends Component
         'search' => ['except' => '', 'as' => 'q'],
     ];
 
-    public function updatingSearch()
+    public function boot(
+        CategoryRepositoryInterface $categoryRepository,
+        ProductRepositoryInterface $productRepository
+    ): void {
+        $this->categoryRepository = $categoryRepository;
+        $this->productRepository = $productRepository;
+    }
+
+    public function updatingSearch(): void
     {
         $this->resetPage();
     }
 
-    public function updatingSelectedCategoryId()
+    public function updatingSelectedCategoryId(): void
     {
         $this->resetPage();
     }
 
-    public function filterByCategory($categoryId)
+    public function filterByCategory($categoryId): void
     {
         $this->selectedCategoryId = $categoryId;
     }
 
-    public function clearFilters()
+    public function clearFilters(): void
     {
         $this->selectedCategoryId = null;
         $this->search = '';
         $this->resetPage();
     }
 
-    public function render()
+    public function addToCart($productId): void
     {
-        $categories = Category::withCount('products')->get();
+        $product = $this->productRepository->find($productId);
 
-        $productsQuery = Product::with('category')
-            ->when($this->selectedCategoryId, function ($query) {
-                $query->where('category_id', $this->selectedCategoryId);
-            })
-            ->when($this->search, function ($query) {
-                $query->where(function ($q) {
-                    $q->where('name', 'like', '%' . $this->search . '%')
-                        ->orWhere('description', 'like', '%' . $this->search . '%');
-                });
-            })
-            ->orderBy('created_at', 'desc');
+        if (! $product || $product['stock'] <= 0) {
+            session()->flash('error', 'Product not available');
 
-        $products = $productsQuery->paginate(12);
+            return;
+        }
+
+        $cart = session()->get('cart', []);
+
+        if (isset($cart[$productId])) {
+            if ($cart[$productId]['quantity'] >= $product['stock']) {
+                session()->flash('error', 'Cannot add more items than available in stock');
+
+                return;
+            }
+            $cart[$productId]['quantity']++;
+        } else {
+            $cart[$productId] = [
+                'product_id' => $product['id'],
+                'name' => $product['name'],
+                'price' => $product['price'],
+                'quantity' => 1,
+                'stock' => $product['stock'],
+            ];
+        }
+
+        session()->put('cart', $cart);
+        session()->flash('success', 'Product added to cart');
+    }
+
+    public function getCartProperty()
+    {
+        return session()->get('cart', []);
+    }
+
+    public function getCartCountProperty(): float|int
+    {
+        return array_sum(array_column($this->cart, 'quantity'));
+    }
+
+    public function getCartTotalProperty(): float|int
+    {
+        return array_sum(array_map(function ($item) {
+            return $item['price'] * $item['quantity'];
+        }, $this->cart));
+    }
+
+    public function render(): View
+    {
+        $categories = $this->categoryRepository->getAllWithProductCount();
+        $products = $this->productRepository->getPaginated($this->selectedCategoryId, $this->search, 12);
 
         return view('catalog::livewire.product-catalog', [
             'categories' => $categories,

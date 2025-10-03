@@ -1,6 +1,38 @@
 <div class="container mx-auto px-4 py-8">
+    <!-- Flash Messages -->
+    @if (session()->has('success'))
+        <div class="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session()->has('error'))
+        <div class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    <div class="flex justify-between items-start mb-8">
+        <div class="flex-1">
+            <h1 class="text-3xl font-bold text-gray-900 mb-4">Product Catalog</h1>
+        </div>
+
+        <!-- Cart Summary Widget -->
+        @if ($this->cartCount > 0)
+            <div class="bg-white rounded-lg shadow-md p-4 ml-4 w-64">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="text-lg font-semibold text-gray-900">Cart</h3>
+                    <span class="bg-blue-600 text-white text-sm px-2 py-1 rounded-full">{{ $this->cartCount }}</span>
+                </div>
+                <div class="text-2xl font-bold text-gray-900 mb-3">${{ number_format($this->cartTotal, 2) }}</div>
+                <a href="/order/create" class="block w-full bg-blue-600 text-white text-center py-2 rounded-lg hover:bg-blue-700 transition">
+                    Checkout
+                </a>
+            </div>
+        @endif
+    </div>
+
     <div class="mb-8">
-        <h1 class="text-3xl font-bold text-gray-900 mb-4">Product Catalog</h1>
 
         <!-- Search Bar -->
         <div class="mb-6">
@@ -65,9 +97,22 @@
                             <p class="text-sm text-gray-600 mb-4 line-clamp-3">{{ $product->description }}</p>
                         @endif
 
-                        <div class="flex items-center justify-between mt-4">
-                            <span class="text-2xl font-bold text-gray-900">${{ number_format($product->price, 2) }}</span>
-                            <span class="text-sm text-gray-500">Stock: {{ $product->stock }}</span>
+                        <div class="mt-4">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-2xl font-bold text-gray-900">${{ number_format($product->price, 2) }}</span>
+                                <span class="text-sm text-gray-500">Stock: {{ $product->stock }}</span>
+                            </div>
+                            <button
+                                wire:click="addToCart({{ $product->id }})"
+                                @if($product->stock === 0) disabled @endif
+                                class="w-full py-2 px-4 rounded-lg transition {{ $product->stock === 0 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700' }}"
+                            >
+                                @if($product->stock === 0)
+                                    Out of Stock
+                                @else
+                                    Add to Cart
+                                @endif
+                            </button>
                         </div>
                     </div>
                 </div>

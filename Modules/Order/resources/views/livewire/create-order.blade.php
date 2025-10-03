@@ -1,4 +1,5 @@
 <div class="container mx-auto px-4 py-8">
+<div class="container mx-auto px-4 py-8">
     <h1 class="text-3xl font-bold text-gray-900 mb-8">Create New Order</h1>
 
     @if (session()->has('success'))
@@ -60,8 +61,8 @@
                     @foreach ($cart as $index => $item)
                         <div class="flex items-center justify-between border-b pb-3">
                             <div class="flex-1">
-                                <h3 class="font-medium text-gray-900">{{ $item['product_name'] }}</h3>
-                                <p class="text-sm text-gray-600">${{ number_format($item['product_price'], 2) }} each</p>
+                                <h3 class="font-medium text-gray-900">{{ $item['name'] ?? $item['product_name'] }}</h3>
+                                <p class="text-sm text-gray-600">${{ number_format($item['price'] ?? $item['product_price'], 2) }} each</p>
                             </div>
                             <div class="flex items-center space-x-2">
                                 <input
@@ -69,9 +70,10 @@
                                     wire:change="updateQuantity({{ $index }}, $event.target.value)"
                                     value="{{ $item['quantity'] }}"
                                     min="1"
+                                    max="{{ $item['stock'] ?? 999 }}"
                                     class="w-16 px-2 py-1 border border-gray-300 rounded"
                                 >
-                                <span class="text-gray-900 font-medium w-20 text-right">${{ number_format($item['subtotal'], 2) }}</span>
+                                <span class="text-gray-900 font-medium w-20 text-right">${{ number_format(($item['price'] ?? $item['product_price']) * $item['quantity'], 2) }}</span>
                                 <button
                                     wire:click="removeFromCart({{ $index }})"
                                     class="text-red-600 hover:text-red-800"
@@ -135,19 +137,19 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 @foreach ($searchResults as $product)
                     <div class="border border-gray-200 rounded-lg p-4 hover:border-blue-500 transition">
-                        <h3 class="font-medium text-gray-900 mb-1">{{ $product->name }}</h3>
-                        <p class="text-sm text-gray-500 mb-2">{{ $product->category_name }}</p>
+                        <h3 class="font-medium text-gray-900 mb-1">{{ $product['name'] }}</h3>
+                        <p class="text-sm text-gray-500 mb-2">{{ $product['category_name'] }}</p>
                         <div class="flex items-center justify-between">
-                            <span class="text-lg font-bold text-gray-900">${{ number_format($product->price, 2) }}</span>
+                            <span class="text-lg font-bold text-gray-900">${{ number_format($product['price'], 2) }}</span>
                             <button
-                                wire:click="addToCart({{ $product->id }})"
+                                wire:click="addToCart({{ $product['id'] }})"
                                 class="px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition"
                             >
                                 Add to Cart
                             </button>
                         </div>
-                        @if ($product->stock < 10)
-                            <p class="text-xs text-yellow-600 mt-2">Only {{ $product->stock }} left in stock</p>
+                        @if ($product['stock'] < 10)
+                            <p class="text-xs text-yellow-600 mt-2">Only {{ $product['stock'] }} left in stock</p>
                         @endif
                     </div>
                 @endforeach
