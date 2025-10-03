@@ -61,4 +61,14 @@ class ProductRepository implements ProductRepositoryInterface
             ];
         })->toArray();
     }
+
+    public function findMany(array $ids): Collection
+    {
+        return $this->model->with('category')->whereIn('id', $ids)->get()->keyBy('id');
+    }
+
+    public function getByCategoryId(int $categoryId): Collection
+    {
+        return $this->model->where('category_id', $categoryId)->get();
+    }
 }

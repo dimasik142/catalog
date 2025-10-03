@@ -16,4 +16,14 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         return $this->model->withCount('products')->get();
     }
+
+    public function find(int $id): ?object
+    {
+        return $this->model->find($id);
+    }
+
+    public function findBySlug(string $slug): ?object
+    {
+        return $this->model->where('slug', $slug)->first();
+    }
 }

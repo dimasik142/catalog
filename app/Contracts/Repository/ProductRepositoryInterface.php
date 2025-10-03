@@ -21,4 +21,14 @@ interface ProductRepositoryInterface
      * Search products by term
      */
     public function search(string $term, int $limit = 10): array;
+
+    /**
+     * Find many products by IDs
+     */
+    public function findMany(array $ids): Collection;
+
+    /**
+     * Get products by category ID
+     */
+    public function getByCategoryId(int $categoryId): Collection;
 }

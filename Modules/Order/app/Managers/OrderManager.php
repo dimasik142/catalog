@@ -74,6 +74,17 @@ class OrderManager implements OrderManagerInterface
         }
     }
 
+    public function update(int $id, array $data): bool
+    {
+        $order = $this->orderRepository->find($id);
+
+        if (! $order) {
+            return false;
+        }
+
+        return $order->update($data);
+    }
+
     public function updateStatus(int $id, string $status): bool
     {
         $order = $this->orderRepository->find($id);
@@ -83,6 +94,17 @@ class OrderManager implements OrderManagerInterface
         }
 
         return $order->update(['status' => $status]);
+    }
+
+    public function delete(int $id): bool
+    {
+        $order = $this->orderRepository->find($id);
+
+        if (! $order) {
+            return false;
+        }
+
+        return $order->delete();
     }
 }
 

@@ -59,7 +59,7 @@ class ProductCatalog extends Component
     {
         $product = $this->productRepository->find($productId);
 
-        if (! $product || $product['stock'] <= 0) {
+        if (! $product || $product->stock <= 0) {
             session()->flash('error', 'Product not available');
 
             return;
@@ -68,7 +68,7 @@ class ProductCatalog extends Component
         $cart = session()->get('cart', []);
 
         if (isset($cart[$productId])) {
-            if ($cart[$productId]['quantity'] >= $product['stock']) {
+            if ($cart[$productId]['quantity'] >= $product->stock) {
                 session()->flash('error', 'Cannot add more items than available in stock');
 
                 return;
@@ -76,11 +76,11 @@ class ProductCatalog extends Component
             $cart[$productId]['quantity']++;
         } else {
             $cart[$productId] = [
-                'product_id' => $product['id'],
-                'name' => $product['name'],
-                'price' => $product['price'],
+                'product_id' => $product->id,
+                'name' => $product->name,
+                'price' => $product->price,
                 'quantity' => 1,
-                'stock' => $product['stock'],
+                'stock' => $product->stock,
             ];
         }
 

@@ -56,10 +56,10 @@ class CreateOrder extends Component
 
     public function addToCart($productId)
     {
-        // Use ProductService interface to get product data (decoupled from Catalog module)
+        // Use ProductRepository to get product data (decoupled from Catalog module)
         $product = $this->productRepository->find($productId);
 
-        if (! $product || $product['stock'] <= 0) {
+        if (! $product || $product->stock <= 0) {
             session()->flash('error', 'Product not available');
 
             return;
@@ -74,7 +74,7 @@ class CreateOrder extends Component
         }
 
         if ($existingIndex !== null) {
-            if ($this->cart[$existingIndex]['quantity'] >= $product['stock']) {
+            if ($this->cart[$existingIndex]['quantity'] >= $product->stock) {
                 session()->flash('error', 'Cannot add more items than available in stock');
 
                 return;
@@ -82,11 +82,11 @@ class CreateOrder extends Component
             $this->cart[$existingIndex]['quantity']++;
         } else {
             $this->cart[] = [
-                'product_id' => $product['id'],
-                'name' => $product['name'],
-                'price' => $product['price'],
+                'product_id' => $product->id,
+                'name' => $product->name,
+                'price' => $product->price,
                 'quantity' => 1,
-                'stock' => $product['stock'],
+                'stock' => $product->stock,
             ];
         }
 

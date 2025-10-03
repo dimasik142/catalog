@@ -27,7 +27,22 @@ class AppServiceProvider extends ServiceProvider
             \Modules\Order\Repositories\OrderRepository::class
         );
 
+        $this->app->singleton(
+            \App\Contracts\Repository\OrderItemRepositoryInterface::class,
+            \Modules\Order\Repositories\OrderItemRepository::class
+        );
+
         // Bind Manager interfaces (write operations: create, update, delete)
+        $this->app->singleton(
+            \App\Contracts\Manager\CategoryManagerInterface::class,
+            \Modules\Catalog\Managers\CategoryManager::class
+        );
+
+        $this->app->singleton(
+            \App\Contracts\Manager\ProductManagerInterface::class,
+            \Modules\Catalog\Managers\ProductManager::class
+        );
+
         $this->app->singleton(
             \App\Contracts\Manager\OrderManagerInterface::class,
             \Modules\Order\Managers\OrderManager::class

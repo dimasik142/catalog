@@ -5,10 +5,16 @@ namespace Modules\Order\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Modules\Order\Database\Factories\OrderItemFactory;
 
 class OrderItem extends Model
 {
     use HasFactory;
+
+    protected static function newFactory(): OrderItemFactory
+    {
+        return OrderItemFactory::new();
+    }
 
     protected $fillable = [
         'order_id',

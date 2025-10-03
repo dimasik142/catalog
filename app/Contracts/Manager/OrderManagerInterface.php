@@ -13,8 +13,17 @@ interface OrderManagerInterface
     public function createOrder(array $customerData, array $cartItems): object;
 
     /**
+     * Update order
+     */
+    public function update(int $id, array $data): bool;
+
+    /**
      * Update order status
      */
     public function updateStatus(int $id, string $status): bool;
 
+    /**
+     * Delete order
+     */
+    public function delete(int $id): bool;
 }
