@@ -16,7 +16,8 @@
       "Bash(vendor/bin/duster fix:*)",
       "Bash(make format:*)",
       "Bash(make lint:*)",
-      "Bash(make:*)"
+      "Bash(make:*)",
+      "Bash(vendor/bin/phpstan analyse:*)"
     ],
     "deny": [],
     "ask": []
