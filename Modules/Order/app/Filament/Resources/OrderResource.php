@@ -40,7 +40,6 @@ class OrderResource extends Resource
                             ->required()
                             ->maxLength(255),
                         Forms\Components\TextInput::make('customer_phone')
-                            ->tel()
                             ->required()
                             ->maxLength(255),
                     ])
