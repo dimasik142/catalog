@@ -3,7 +3,6 @@
 namespace Modules\Catalog\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use Modules\Catalog\Models\Category;
 use Modules\Catalog\Models\Product;
 

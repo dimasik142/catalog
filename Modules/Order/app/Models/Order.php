@@ -2,19 +2,28 @@
 
 namespace Modules\Order\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 use Modules\Order\Database\Factories\OrderFactory;
 
+/**
+ * @property int $id
+ * @property string $customer_name
+ * @property string $customer_email
+ * @property string|null $customer_phone
+ * @property float $total
+ * @property string $status
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Collection|OrderItem[] $orderItems
+ * @property-read int|null $order_items_count
+ */
 class Order extends Model
 {
     use HasFactory;
-
-    protected static function newFactory(): OrderFactory
-    {
-        return OrderFactory::new();
-    }
 
     const STATUS_PENDING = 'pending';
 
@@ -44,6 +53,11 @@ class Order extends Model
             self::STATUS_SHIPPED => 'Shipped',
             self::STATUS_DELIVERED => 'Delivered',
         ];
+    }
+
+    protected static function newFactory(): OrderFactory
+    {
+        return OrderFactory::new();
     }
 
     /**

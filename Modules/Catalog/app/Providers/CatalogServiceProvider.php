@@ -4,6 +4,8 @@ namespace Modules\Catalog\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
+use Modules\Catalog\Livewire\ProductCatalog;
 use Nwidart\Modules\Traits\PathNamespace;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -83,8 +85,8 @@ class CatalogServiceProvider extends ServiceProvider
      */
     protected function registerLivewireComponents(): void
     {
-        if (class_exists(\Livewire\Livewire::class)) {
-            \Livewire\Livewire::component('catalog::product-catalog', \Modules\Catalog\Livewire\ProductCatalog::class);
+        if (class_exists(Livewire::class)) {
+            Livewire::component('catalog::product-catalog', ProductCatalog::class);
         }
     }
 

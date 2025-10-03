@@ -1,55 +1,391 @@
 parameters:
 	ignoreErrors:
 		-
-			message: '#^Invoking callable on an unknown class Filament\\Forms\\Set\.$#'
-			identifier: class.notFound
-			count: 1
-			path: Modules/Catalog/app/Filament/Resources/CategoryResource.php
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$description\.$#'
+			identifier: property.notFound
+			count: 3
+			path: Modules/Catalog/tests/Feature/Filament/CategoryResourceTest.php
 
 		-
-			message: '#^Parameter \$set of anonymous function has invalid type Filament\\Forms\\Set\.$#'
-			identifier: class.notFound
-			count: 1
-			path: Modules/Catalog/app/Filament/Resources/CategoryResource.php
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 5
+			path: Modules/Catalog/tests/Feature/Filament/CategoryResourceTest.php
 
 		-
-			message: '#^Parameter \#1 \$view of function view expects view\-string\|null, string given\.$#'
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 4
+			path: Modules/Catalog/tests/Feature/Filament/CategoryResourceTest.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$slug\.$#'
+			identifier: property.notFound
+			count: 6
+			path: Modules/Catalog/tests/Feature/Filament/CategoryResourceTest.php
+
+		-
+			message: '#^Access to an undefined property PHPUnit\\Framework\\TestCase\:\:\$user\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Catalog/tests/Feature/Filament/CategoryResourceTest.php
+
+		-
+			message: '#^Access to an undefined property Pest\\Expectation\<Illuminate\\Database\\Eloquent\\Model\|null\>\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Catalog/tests/Feature/Filament/CategoryResourceTest.php
+
+		-
+			message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:actingAs\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: Modules/Catalog/tests/Feature/Filament/CategoryResourceTest.php
+
+		-
+			message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:assertDatabaseHas\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: Modules/Catalog/tests/Feature/Filament/CategoryResourceTest.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$description\.$#'
+			identifier: property.notFound
+			count: 3
+			path: Modules/Catalog/tests/Feature/Filament/ProductResourceTest.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 7
+			path: Modules/Catalog/tests/Feature/Filament/ProductResourceTest.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 4
+			path: Modules/Catalog/tests/Feature/Filament/ProductResourceTest.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$price\.$#'
+			identifier: property.notFound
+			count: 4
+			path: Modules/Catalog/tests/Feature/Filament/ProductResourceTest.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$stock\.$#'
+			identifier: property.notFound
+			count: 3
+			path: Modules/Catalog/tests/Feature/Filament/ProductResourceTest.php
+
+		-
+			message: '#^Access to an undefined property PHPUnit\\Framework\\TestCase\:\:\$category\.$#'
+			identifier: property.notFound
+			count: 24
+			path: Modules/Catalog/tests/Feature/Filament/ProductResourceTest.php
+
+		-
+			message: '#^Access to an undefined property PHPUnit\\Framework\\TestCase\:\:\$user\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Catalog/tests/Feature/Filament/ProductResourceTest.php
+
+		-
+			message: '#^Access to an undefined property Pest\\Expectation\<Illuminate\\Database\\Eloquent\\Model\|null\>\:\:\$category_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Catalog/tests/Feature/Filament/ProductResourceTest.php
+
+		-
+			message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:actingAs\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: Modules/Catalog/tests/Feature/Filament/ProductResourceTest.php
+
+		-
+			message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:assertDatabaseHas\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: Modules/Catalog/tests/Feature/Filament/ProductResourceTest.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 15
+			path: Modules/Catalog/tests/Feature/ProductDisplayTest.php
+
+		-
+			message: '#^Access to an undefined property PHPUnit\\Framework\\TestCase\:\:\$category1\.$#'
+			identifier: property.notFound
+			count: 17
+			path: Modules/Catalog/tests/Feature/ProductDisplayTest.php
+
+		-
+			message: '#^Access to an undefined property PHPUnit\\Framework\\TestCase\:\:\$category2\.$#'
+			identifier: property.notFound
+			count: 6
+			path: Modules/Catalog/tests/Feature/ProductDisplayTest.php
+
+		-
+			message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:get\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: Modules/Catalog/tests/Feature/ProductDisplayTest.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$category\.$#'
+			identifier: property.notFound
+			count: 2
+			path: Modules/Catalog/tests/Feature/ProductManagementTest.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 14
+			path: Modules/Catalog/tests/Feature/ProductManagementTest.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$price\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Catalog/tests/Feature/ProductManagementTest.php
+
+		-
+			message: '#^Access to an undefined property PHPUnit\\Framework\\TestCase\:\:\$category\.$#'
+			identifier: property.notFound
+			count: 26
+			path: Modules/Catalog/tests/Feature/ProductManagementTest.php
+
+		-
+			message: '#^Access to an undefined property PHPUnit\\Framework\\TestCase\:\:\$categoryManager\.$#'
+			identifier: property.notFound
+			count: 4
+			path: Modules/Catalog/tests/Feature/ProductManagementTest.php
+
+		-
+			message: '#^Access to an undefined property PHPUnit\\Framework\\TestCase\:\:\$categoryRepository\.$#'
+			identifier: property.notFound
+			count: 5
+			path: Modules/Catalog/tests/Feature/ProductManagementTest.php
+
+		-
+			message: '#^Access to an undefined property PHPUnit\\Framework\\TestCase\:\:\$productManager\.$#'
+			identifier: property.notFound
+			count: 5
+			path: Modules/Catalog/tests/Feature/ProductManagementTest.php
+
+		-
+			message: '#^Access to an undefined property PHPUnit\\Framework\\TestCase\:\:\$productRepository\.$#'
+			identifier: property.notFound
+			count: 9
+			path: Modules/Catalog/tests/Feature/ProductManagementTest.php
+
+		-
+			message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:assertDatabaseHas\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: Modules/Catalog/tests/Feature/ProductManagementTest.php
+
+		-
+			message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:assertDatabaseMissing\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: Modules/Catalog/tests/Feature/ProductManagementTest.php
+
+		-
+			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Str\:\:words\(\) expects string, int given\.$#'
 			identifier: argument.type
+			count: 1
+			path: Modules/Order/app/Database/Factories/OrderItemFactory.php
+
+		-
+			message: '#^Offset ''name'' on array\{product_id\: int, name\: string, price\: float, quantity\: int\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: Modules/Order/app/Managers/OrderManager.php
+
+		-
+			message: '#^Offset ''price'' on array\{product_id\: int, name\: string, price\: float, quantity\: int\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 2
+			path: Modules/Order/app/Managers/OrderManager.php
+
+		-
+			message: '#^Offset ''product_price'' on \*NEVER\* on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: Modules/Order/app/Managers/OrderManager.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$customer_email\.$#'
+			identifier: property.notFound
+			count: 4
+			path: Modules/Order/tests/Feature/Filament/OrderResourceTest.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$customer_name\.$#'
+			identifier: property.notFound
+			count: 4
+			path: Modules/Order/tests/Feature/Filament/OrderResourceTest.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$customer_phone\.$#'
+			identifier: property.notFound
 			count: 3
-			path: Modules/Catalog/app/Http/Controllers/CatalogController.php
+			path: Modules/Order/tests/Feature/Filament/OrderResourceTest.php
 
 		-
-			message: '#^Access to an undefined property Modules\\Order\\Models\\Order\:\:\$status\.$#'
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 11
+			path: Modules/Order/tests/Feature/Filament/OrderResourceTest.php
+
+		-
+			message: '#^Access to an undefined property PHPUnit\\Framework\\TestCase\:\:\$category\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Order/tests/Feature/Filament/OrderResourceTest.php
+
+		-
+			message: '#^Access to an undefined property PHPUnit\\Framework\\TestCase\:\:\$product\.$#'
+			identifier: property.notFound
+			count: 2
+			path: Modules/Order/tests/Feature/Filament/OrderResourceTest.php
+
+		-
+			message: '#^Access to an undefined property PHPUnit\\Framework\\TestCase\:\:\$user\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Order/tests/Feature/Filament/OrderResourceTest.php
+
+		-
+			message: '#^Access to an undefined property Pest\\Expectation\<Illuminate\\Database\\Eloquent\\Model\|null\>\:\:\$customer_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Order/tests/Feature/Filament/OrderResourceTest.php
+
+		-
+			message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:actingAs\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: Modules/Order/tests/Feature/Filament/OrderResourceTest.php
+
+		-
+			message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:assertDatabaseHas\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: Modules/Order/tests/Feature/Filament/OrderResourceTest.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 2
+			path: Modules/Order/tests/Feature/OrderCreationTest.php
+
+		-
+			message: '#^Access to an undefined property PHPUnit\\Framework\\TestCase\:\:\$category\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Order/tests/Feature/OrderCreationTest.php
+
+		-
+			message: '#^Access to an undefined property PHPUnit\\Framework\\TestCase\:\:\$product1\.$#'
+			identifier: property.notFound
+			count: 38
+			path: Modules/Order/tests/Feature/OrderCreationTest.php
+
+		-
+			message: '#^Access to an undefined property PHPUnit\\Framework\\TestCase\:\:\$product2\.$#'
+			identifier: property.notFound
+			count: 12
+			path: Modules/Order/tests/Feature/OrderCreationTest.php
+
+		-
+			message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:assertDatabaseHas\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: Modules/Order/tests/Feature/OrderCreationTest.php
+
+		-
+			message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:get\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: Modules/Order/tests/Feature/OrderCreationTest.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 30
+			path: Modules/Order/tests/Feature/OrderManagementTest.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$orderItems\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Order/tests/Feature/OrderManagementTest.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$total\.$#'
+			identifier: property.notFound
+			count: 2
+			path: Modules/Order/tests/Feature/OrderManagementTest.php
+
+		-
+			message: '#^Access to an undefined property PHPUnit\\Framework\\TestCase\:\:\$category\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Order/tests/Feature/OrderManagementTest.php
+
+		-
+			message: '#^Access to an undefined property PHPUnit\\Framework\\TestCase\:\:\$orderItemManager\.$#'
+			identifier: property.notFound
+			count: 6
+			path: Modules/Order/tests/Feature/OrderManagementTest.php
+
+		-
+			message: '#^Access to an undefined property PHPUnit\\Framework\\TestCase\:\:\$orderItemRepository\.$#'
 			identifier: property.notFound
 			count: 3
-			path: Modules/Order/app/Filament/Resources/OrderResource.php
+			path: Modules/Order/tests/Feature/OrderManagementTest.php
 
 		-
-			message: '#^Parameter \#1 \$view of function view expects view\-string\|null, string given\.$#'
-			identifier: argument.type
-			count: 3
-			path: Modules/Order/app/Http/Controllers/OrderController.php
-
-		-
-			message: '#^Access to an undefined property Modules\\Order\\Models\\Order\:\:\$total\.$#'
+			message: '#^Access to an undefined property PHPUnit\\Framework\\TestCase\:\:\$orderManager\.$#'
 			identifier: property.notFound
-			count: 1
-			path: Modules/Order/app/Models/Order.php
+			count: 9
+			path: Modules/Order/tests/Feature/OrderManagementTest.php
 
 		-
-			message: '#^Access to an undefined property Modules\\Order\\Models\\OrderItem\:\:\$product_price\.$#'
+			message: '#^Access to an undefined property PHPUnit\\Framework\\TestCase\:\:\$orderRepository\.$#'
 			identifier: property.notFound
-			count: 1
-			path: Modules/Order/app/Models/OrderItem.php
+			count: 10
+			path: Modules/Order/tests/Feature/OrderManagementTest.php
 
 		-
-			message: '#^Access to an undefined property Modules\\Order\\Models\\OrderItem\:\:\$quantity\.$#'
+			message: '#^Access to an undefined property PHPUnit\\Framework\\TestCase\:\:\$product\.$#'
 			identifier: property.notFound
-			count: 1
-			path: Modules/Order/app/Models/OrderItem.php
+			count: 29
+			path: Modules/Order/tests/Feature/OrderManagementTest.php
 
 		-
-			message: '#^Access to an undefined property Modules\\Order\\Models\\OrderItem\:\:\$subtotal\.$#'
-			identifier: property.notFound
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:calculateTotal\(\)\.$#'
+			identifier: method.notFound
 			count: 1
-			path: Modules/Order/app/Models/OrderItem.php
+			path: Modules/Order/tests/Feature/OrderManagementTest.php
+
+		-
+			message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:assertDatabaseHas\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: Modules/Order/tests/Feature/OrderManagementTest.php
+
+		-
+			message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:assertDatabaseMissing\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: Modules/Order/tests/Feature/OrderManagementTest.php
+
+		-
+			message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:get\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: Modules/Order/tests/Feature/OrderManagementTest.php

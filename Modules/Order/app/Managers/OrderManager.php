@@ -107,4 +107,3 @@ class OrderManager implements OrderManagerInterface
         return $order->delete();
     }
 }
-

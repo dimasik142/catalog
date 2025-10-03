@@ -2,7 +2,6 @@
 
 use App\Models\User;
 use Livewire\Livewire;
-use Modules\Catalog\Filament\Resources\ProductResource;
 use Modules\Catalog\Filament\Resources\ProductResource\Pages\CreateProduct;
 use Modules\Catalog\Filament\Resources\ProductResource\Pages\EditProduct;
 use Modules\Catalog\Filament\Resources\ProductResource\Pages\ListProducts;

@@ -104,10 +104,10 @@
                             </div>
                             <button
                                 wire:click="addToCart({{ $product->id }})"
-                                @if($product->stock === 0) disabled @endif
+                                @if ($product->stock === 0) disabled @endif
                                 class="w-full py-2 px-4 rounded-lg transition {{ $product->stock === 0 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700' }}"
                             >
-                                @if($product->stock === 0)
+                                @if ($product->stock === 0)
                                     Out of Stock
                                 @else
                                     Add to Cart

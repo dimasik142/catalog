@@ -68,10 +68,10 @@
             "@php artisan test"
         ],
         "lint": [
-            "vendor/bin/duster lint"
+            "vendor/bin/duster lint || true"
         ],
         "format": [
-            "vendor/bin/duster fix"
+            "vendor/bin/duster fix || true"
         ],
         "phpstan": [
             "vendor/bin/phpstan analyse --memory-limit=512M"

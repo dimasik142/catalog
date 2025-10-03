@@ -5,7 +5,6 @@ use Modules\Catalog\Models\Category;
 use Modules\Catalog\Models\Product;
 use Modules\Order\Livewire\CreateOrder;
 use Modules\Order\Models\Order;
-use Modules\Order\Models\OrderItem;
 
 uses()->group('order', 'order-creation');
 
@@ -278,6 +277,7 @@ test('order total is calculated correctly', function () {
         ->set('customer_phone', '+1234567890')
         ->call('submitOrder');
 
+    /* @var Order $order */
     $order = Order::where('customer_email', 'john@example.com')->first();
 
     expect($order->total)->toBe('2089.95');

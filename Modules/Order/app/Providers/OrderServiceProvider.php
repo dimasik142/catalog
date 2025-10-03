@@ -4,6 +4,9 @@ namespace Modules\Order\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
+use Modules\Order\Livewire\CreateOrder;
+use Modules\Order\Livewire\ViewOrder;
 use Nwidart\Modules\Traits\PathNamespace;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -83,9 +86,9 @@ class OrderServiceProvider extends ServiceProvider
      */
     protected function registerLivewireComponents(): void
     {
-        if (class_exists(\Livewire\Livewire::class)) {
-            \Livewire\Livewire::component('order::create-order', \Modules\Order\Livewire\CreateOrder::class);
-            \Livewire\Livewire::component('order::view-order', \Modules\Order\Livewire\ViewOrder::class);
+        if (class_exists(Livewire::class)) {
+            Livewire::component('order::create-order', CreateOrder::class);
+            Livewire::component('order::view-order', ViewOrder::class);
         }
     }
 

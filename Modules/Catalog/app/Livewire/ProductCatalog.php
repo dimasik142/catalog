@@ -12,13 +12,13 @@ class ProductCatalog extends Component
 {
     use WithPagination;
 
-    protected CategoryRepositoryInterface $categoryRepository;
-
-    protected ProductRepositoryInterface $productRepository;
-
     public $selectedCategoryId = null;
 
     public $search = '';
+
+    protected CategoryRepositoryInterface $categoryRepository;
+
+    protected ProductRepositoryInterface $productRepository;
 
     protected $queryString = [
         'selectedCategoryId' => ['except' => null, 'as' => 'category'],
@@ -86,23 +86,6 @@ class ProductCatalog extends Component
 
         session()->put('cart', $cart);
         session()->flash('success', 'Product added to cart');
-    }
-
-    public function getCartProperty()
-    {
-        return session()->get('cart', []);
-    }
-
-    public function getCartCountProperty(): float|int
-    {
-        return array_sum(array_column($this->cart, 'quantity'));
-    }
-
-    public function getCartTotalProperty(): float|int
-    {
-        return array_sum(array_map(function ($item) {
-            return $item['price'] * $item['quantity'];
-        }, $this->cart));
     }
 
     public function render(): View

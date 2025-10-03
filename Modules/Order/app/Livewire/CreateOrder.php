@@ -9,10 +9,6 @@ use Livewire\Component;
 
 class CreateOrder extends Component
 {
-    protected ProductRepositoryInterface $productRepository;
-
-    protected OrderManagerInterface $orderManager;
-
     public $customer_name = '';
 
     public $customer_email = '';
@@ -24,6 +20,10 @@ class CreateOrder extends Component
     public $cart = [];
 
     public $searchResults = [];
+
+    protected ProductRepositoryInterface $productRepository;
+
+    protected OrderManagerInterface $orderManager;
 
     protected $rules = [
         'customer_name' => 'required|string|max:255',
@@ -150,7 +150,7 @@ class CreateOrder extends Component
             $order = $this->orderManager->createOrder($customerData, $this->cart);
 
             $this->clearCart();
-            session()->flash('success', 'Order placed successfully! Order #'.$order->id);
+            session()->flash('success', 'Order placed successfully! Order #' . $order->id);
 
             return redirect()->route('order.view', ['id' => $order->id]);
         } catch (Exception $e) {

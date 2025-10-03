@@ -7,7 +7,16 @@
       "Bash(composer:*)",
       "Bash(php artisan config:clear:*)",
       "Bash(php artisan:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "WebFetch(domain:filamentphp.com)",
+      "Bash(vendor/bin/duster lint:*)",
+      "Bash(vendor/bin/tlint:*)",
+      "Bash(php:*)",
+      "Bash(echo $?)",
+      "Bash(vendor/bin/duster fix:*)",
+      "Bash(make format:*)",
+      "Bash(make lint:*)",
+      "Bash(make:*)"
     ],
     "deny": [],
     "ask": []

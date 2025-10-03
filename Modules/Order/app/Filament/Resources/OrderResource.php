@@ -6,6 +6,7 @@ use BackedEnum;
 use Filament\Actions;
 use Filament\Forms;
 use Filament\Infolists;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components;
 use Filament\Schemas\Schema;
@@ -114,7 +115,7 @@ class OrderResource extends Resource
                     ->visible(fn (Order $record): bool => $record->status === Order::STATUS_PENDING)
                     ->requiresConfirmation()
                     ->action(fn (Order $record) => $record->update(['status' => Order::STATUS_CONFIRMED]))
-                    ->after(fn () => \Filament\Notifications\Notification::make()
+                    ->after(fn () => Notification::make()
                         ->success()
                         ->title('Order confirmed')
                         ->send()),
@@ -124,7 +125,7 @@ class OrderResource extends Resource
                     ->visible(fn (Order $record): bool => $record->status === Order::STATUS_CONFIRMED)
                     ->requiresConfirmation()
                     ->action(fn (Order $record) => $record->update(['status' => Order::STATUS_SHIPPED]))
-                    ->after(fn () => \Filament\Notifications\Notification::make()
+                    ->after(fn () => Notification::make()
                         ->success()
                         ->title('Order marked as shipped')
                         ->send()),
@@ -134,7 +135,7 @@ class OrderResource extends Resource
                     ->visible(fn (Order $record): bool => $record->status === Order::STATUS_SHIPPED)
                     ->requiresConfirmation()
                     ->action(fn (Order $record) => $record->update(['status' => Order::STATUS_DELIVERED]))
-                    ->after(fn () => \Filament\Notifications\Notification::make()
+                    ->after(fn () => Notification::make()
                         ->success()
                         ->title('Order marked as delivered')
                         ->send()),

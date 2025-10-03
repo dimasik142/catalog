@@ -7,14 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Modules\Order\Database\Factories\OrderItemFactory;
 
+/**
+ * @property int $id
+ * @property int $order_id
+ * @property int $product_id
+ * @property string $product_name
+ * @property float $product_price
+ * @property int $quantity
+ * @property float $subtotal
+ */
 class OrderItem extends Model
 {
     use HasFactory;
-
-    protected static function newFactory(): OrderItemFactory
-    {
-        return OrderItemFactory::new();
-    }
 
     protected $fillable = [
         'order_id',
@@ -30,6 +34,11 @@ class OrderItem extends Model
         'quantity' => 'integer',
         'subtotal' => 'decimal:2',
     ];
+
+    protected static function newFactory(): OrderItemFactory
+    {
+        return OrderItemFactory::new();
+    }
 
     /**
      * Get the order that owns the order item.

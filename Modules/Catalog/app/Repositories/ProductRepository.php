@@ -21,8 +21,8 @@ class ProductRepository implements ProductRepositoryInterface
             })
             ->when($search, function ($query) use ($search) {
                 $query->where(function ($q) use ($search) {
-                    $q->where('name', 'like', '%'.$search.'%')
-                        ->orWhere('description', 'like', '%'.$search.'%');
+                    $q->where('name', 'like', '%' . $search . '%')
+                        ->orWhere('description', 'like', '%' . $search . '%');
                 });
             })
             ->orderBy('created_at', 'desc');
@@ -43,13 +43,13 @@ class ProductRepository implements ProductRepositoryInterface
 
         $products = $this->model->with('category')
             ->where(function ($query) use ($term) {
-                $query->where('name', 'like', '%'.$term.'%')
-                    ->orWhere('description', 'like', '%'.$term.'%');
+                $query->where('name', 'like', '%' . $term . '%')
+                    ->orWhere('description', 'like', '%' . $term . '%');
             })
             ->limit($limit)
             ->get();
 
-        return $products->map(function ($product) {
+        return $products->map(function (Product $product) {
             return [
                 'id' => $product->id,
                 'name' => $product->name,
